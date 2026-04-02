@@ -1,0 +1,15 @@
+.dashboard-page {
+  animation: fadeIn var(--transition-base) ease;
+}
+
+.dashboard-row {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+@media (max-width: 900px) {
+  .dashboard-row {
+    flex-direction: column;
+  }
+}

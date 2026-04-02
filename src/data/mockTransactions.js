@@ -1,0 +1,108 @@
+function generateId() {
+  return Math.random().toString(36).substring(2, 10);
+}
+
+const RAW_TRANSACTIONS = [
+  // October 2025
+  { date: '2025-10-01', description: 'Monthly Salary', amount: 65000, category: 'salary', type: 'income' },
+  { date: '2025-10-03', description: 'Rent Payment', amount: 18000, category: 'housing', type: 'expense' },
+  { date: '2025-10-05', description: 'BigBasket Groceries', amount: 3200, category: 'food', type: 'expense' },
+  { date: '2025-10-07', description: 'Electricity Bill', amount: 2400, category: 'utilities', type: 'expense' },
+  { date: '2025-10-09', description: 'Freelance Web Project', amount: 25000, category: 'freelance', type: 'income' },
+  { date: '2025-10-10', description: 'Petrol Fill-up', amount: 2800, category: 'transport', type: 'expense' },
+  { date: '2025-10-12', description: 'Restaurant Dinner', amount: 1850, category: 'food', type: 'expense' },
+  { date: '2025-10-14', description: 'Netflix Subscription', amount: 649, category: 'subscriptions', type: 'expense' },
+  { date: '2025-10-16', description: 'Apollo Pharmacy', amount: 1200, category: 'healthcare', type: 'expense' },
+  { date: '2025-10-18', description: 'Udemy Course', amount: 449, category: 'education', type: 'expense' },
+  { date: '2025-10-20', description: 'Winter Jacket - Myntra', amount: 3500, category: 'shopping', type: 'expense' },
+  { date: '2025-10-22', description: 'Concert Tickets', amount: 2500, category: 'entertainment', type: 'expense' },
+  { date: '2025-10-25', description: 'Water Bill', amount: 450, category: 'utilities', type: 'expense' },
+  { date: '2025-10-28', description: 'Mutual Fund Dividend', amount: 8500, category: 'investment', type: 'income' },
+
+  // November 2025
+  { date: '2025-11-01', description: 'Monthly Salary', amount: 65000, category: 'salary', type: 'income' },
+  { date: '2025-11-02', description: 'Rent Payment', amount: 18000, category: 'housing', type: 'expense' },
+  { date: '2025-11-04', description: 'DMart Groceries', amount: 4100, category: 'food', type: 'expense' },
+  { date: '2025-11-06', description: 'Ola/Uber Rides', amount: 1800, category: 'transport', type: 'expense' },
+  { date: '2025-11-08', description: 'Dental Checkup', amount: 3500, category: 'healthcare', type: 'expense' },
+  { date: '2025-11-10', description: 'Spotify Premium', amount: 119, category: 'subscriptions', type: 'expense' },
+  { date: '2025-11-12', description: 'Freelance Logo Design', amount: 15000, category: 'freelance', type: 'income' },
+  { date: '2025-11-14', description: 'boAt Headphones', amount: 2999, category: 'shopping', type: 'expense' },
+  { date: '2025-11-16', description: 'Movie Night - PVR', amount: 850, category: 'entertainment', type: 'expense' },
+  { date: '2025-11-18', description: 'Jio Fiber Bill', amount: 999, category: 'utilities', type: 'expense' },
+  { date: '2025-11-20', description: 'Zepto Groceries', amount: 2800, category: 'food', type: 'expense' },
+  { date: '2025-11-22', description: 'Petrol Fill-up', amount: 3100, category: 'transport', type: 'expense' },
+  { date: '2025-11-25', description: 'Book - Flipkart', amount: 450, category: 'education', type: 'expense' },
+  { date: '2025-11-28', description: 'Amazon Refund', amount: 1800, category: 'refund', type: 'income' },
+
+  // December 2025
+  { date: '2025-12-01', description: 'Monthly Salary', amount: 65000, category: 'salary', type: 'income' },
+  { date: '2025-12-02', description: 'Rent Payment', amount: 18000, category: 'housing', type: 'expense' },
+  { date: '2025-12-04', description: 'Festival Groceries', amount: 5500, category: 'food', type: 'expense' },
+  { date: '2025-12-06', description: 'Electricity Bill', amount: 2850, category: 'utilities', type: 'expense' },
+  { date: '2025-12-08', description: 'Christmas Gifts - Amazon', amount: 8500, category: 'shopping', type: 'expense' },
+  { date: '2025-12-10', description: 'Year-end Bonus', amount: 40000, category: 'salary', type: 'income' },
+  { date: '2025-12-12', description: 'Christmas Dinner', amount: 3200, category: 'food', type: 'expense' },
+  { date: '2025-12-14', description: 'Train Tickets - IRCTC', amount: 2400, category: 'transport', type: 'expense' },
+  { date: '2025-12-16', description: 'Hotstar + Netflix Bundle', amount: 999, category: 'subscriptions', type: 'expense' },
+  { date: '2025-12-18', description: 'Gym Membership', amount: 2500, category: 'healthcare', type: 'expense' },
+  { date: '2025-12-20', description: 'Freelance Consulting', amount: 35000, category: 'freelance', type: 'income' },
+  { date: '2025-12-22', description: 'Theater Show', amount: 1200, category: 'entertainment', type: 'expense' },
+  { date: '2025-12-24', description: 'Last-minute Gifts', amount: 4500, category: 'shopping', type: 'expense' },
+  { date: '2025-12-28', description: 'Stock Dividend', amount: 12000, category: 'investment', type: 'income' },
+
+  // January 2026
+  { date: '2026-01-01', description: 'Monthly Salary', amount: 70000, category: 'salary', type: 'income' },
+  { date: '2026-01-03', description: 'Rent Payment', amount: 18000, category: 'housing', type: 'expense' },
+  { date: '2026-01-05', description: 'BigBasket Groceries', amount: 3800, category: 'food', type: 'expense' },
+  { date: '2026-01-07', description: 'Car Insurance Renewal', amount: 12000, category: 'transport', type: 'expense' },
+  { date: '2026-01-09', description: 'Water Bill', amount: 500, category: 'utilities', type: 'expense' },
+  { date: '2026-01-11', description: 'Coursera Subscription', amount: 3200, category: 'education', type: 'expense' },
+  { date: '2026-01-13', description: 'Medicine Refill', amount: 1800, category: 'healthcare', type: 'expense' },
+  { date: '2026-01-15', description: 'Freelance App Dev', amount: 45000, category: 'freelance', type: 'income' },
+  { date: '2026-01-17', description: 'Running Shoes - Nike', amount: 6500, category: 'shopping', type: 'expense' },
+  { date: '2026-01-19', description: 'Amazon Prime + Hotstar', amount: 499, category: 'subscriptions', type: 'expense' },
+  { date: '2026-01-21', description: 'Swiggy Groceries', amount: 2600, category: 'food', type: 'expense' },
+  { date: '2026-01-23', description: 'Escape Room', amount: 1500, category: 'entertainment', type: 'expense' },
+  { date: '2026-01-25', description: 'Electricity Bill', amount: 2200, category: 'utilities', type: 'expense' },
+  { date: '2026-01-28', description: 'SIP Returns', amount: 15000, category: 'investment', type: 'income' },
+
+  // February 2026
+  { date: '2026-02-01', description: 'Monthly Salary', amount: 70000, category: 'salary', type: 'income' },
+  { date: '2026-02-02', description: 'Rent Payment', amount: 18000, category: 'housing', type: 'expense' },
+  { date: '2026-02-04', description: 'Valentine Dinner', amount: 3500, category: 'food', type: 'expense' },
+  { date: '2026-02-06', description: 'Petrol Fill-up', amount: 2900, category: 'transport', type: 'expense' },
+  { date: '2026-02-08', description: 'Tanishq Pendant Gift', amount: 12000, category: 'shopping', type: 'expense' },
+  { date: '2026-02-10', description: 'Jio Fiber Bill', amount: 999, category: 'utilities', type: 'expense' },
+  { date: '2026-02-12', description: 'Freelance Writing', amount: 18000, category: 'freelance', type: 'income' },
+  { date: '2026-02-14', description: 'Zepto Groceries', amount: 2700, category: 'food', type: 'expense' },
+  { date: '2026-02-16', description: 'Arijit Singh Concert', amount: 3500, category: 'entertainment', type: 'expense' },
+  { date: '2026-02-18', description: 'Health Checkup', amount: 4500, category: 'healthcare', type: 'expense' },
+  { date: '2026-02-20', description: 'Ola/Uber Rides', amount: 2100, category: 'transport', type: 'expense' },
+  { date: '2026-02-22', description: 'YouTube Premium', amount: 149, category: 'subscriptions', type: 'expense' },
+  { date: '2026-02-25', description: 'Book - Amazon', amount: 399, category: 'education', type: 'expense' },
+  { date: '2026-02-28', description: 'FD Interest', amount: 9500, category: 'investment', type: 'income' },
+
+  // March 2026
+  { date: '2026-03-01', description: 'Monthly Salary', amount: 70000, category: 'salary', type: 'income' },
+  { date: '2026-03-03', description: 'Rent Payment', amount: 20000, category: 'housing', type: 'expense' },
+  { date: '2026-03-05', description: 'DMart Groceries', amount: 3600, category: 'food', type: 'expense' },
+  { date: '2026-03-07', description: 'Electricity Bill', amount: 1950, category: 'utilities', type: 'expense' },
+  { date: '2026-03-09', description: 'Rapido Rides', amount: 1400, category: 'transport', type: 'expense' },
+  { date: '2026-03-11', description: 'Freelance Design Sprint', amount: 28000, category: 'freelance', type: 'income' },
+  { date: '2026-03-13', description: 'Spring Clothing - Ajio', amount: 5500, category: 'shopping', type: 'expense' },
+  { date: '2026-03-15', description: 'Brunch at Café', amount: 1800, category: 'food', type: 'expense' },
+  { date: '2026-03-17', description: 'Eye Checkup', amount: 2500, category: 'healthcare', type: 'expense' },
+  { date: '2026-03-19', description: 'Xbox Game Pass', amount: 499, category: 'subscriptions', type: 'expense' },
+  { date: '2026-03-21', description: 'BigBasket Groceries', amount: 3200, category: 'food', type: 'expense' },
+  { date: '2026-03-23', description: 'Art Exhibition', amount: 800, category: 'entertainment', type: 'expense' },
+  { date: '2026-03-25', description: 'Water Bill', amount: 480, category: 'utilities', type: 'expense' },
+  { date: '2026-03-27', description: 'Udemy Course', amount: 449, category: 'education', type: 'expense' },
+  { date: '2026-03-29', description: 'Stock Sale Profit', amount: 22000, category: 'investment', type: 'income' },
+  { date: '2026-03-30', description: 'Miscellaneous', amount: 750, category: 'other', type: 'expense' },
+];
+
+export const DEFAULT_TRANSACTIONS = RAW_TRANSACTIONS.map(t => ({
+  id: generateId(),
+  ...t,
+}));
